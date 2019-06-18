@@ -1,0 +1,27 @@
+version: '2.2'
+services:
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./app:/usr/share/nginx/html
+  chromedriver:
+    image: rever/chromedriver
+    init: true
+    environment:
+      - ENABLE_VNC=true
+      - EXPOSE_X11=true
+    ports:
+      - 5900:5900
+      - 9515:9515
+      - 4444:4444
+      - 6000:6000
+  nightwatch:
+    image: rever/nightwatch
+    init: true
+    depends_on:
+      - chromedriver
+      - nginx
+    environment:
+      - WAIT_FOR_HOSTS=nginx:80 chromedriver:4444 chromedriver:6000
+    volumes:
+      - ./test:/home/nightwatch
