@@ -20,9 +20,9 @@ ENV NODE_PATH=/usr/lib/node_modules
 
 # Avoid permission issues with host mounts by assigning a user/group with
 # uid/gid 1000 (usually the ID of the first user account on GNU/Linux):
-# RUN adduser -D -u 1000 nightwatch
-# USER nightwatch
-# WORKDIR /home/nightwatch
+RUN adduser -u 10000 nightwatch
+USER nightwatch
+WORKDIR /home/nightwatch
 
 COPY wait-for.sh /usr/local/bin/wait-for
 
