@@ -23,7 +23,8 @@ ENV NODE_PATH=/usr/lib/node_modules
 RUN adduser -u 10000 nightwatch
 USER nightwatch
 WORKDIR /home/nightwatch
-RUN mkdir -p reports && chmod -R 777 reports
+RUN mkdir -p reports
+RUN chmod -R g+w reports
 
 COPY wait-for.sh /usr/local/bin/wait-for
 
