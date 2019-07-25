@@ -22,6 +22,9 @@ ENV NODE_PATH=/usr/lib/node_modules
 # uid/gid 1000 (usually the ID of the first user account on GNU/Linux):
 RUN mkdir -p /home/nightwatch/reports && chmod -R 777 /home/nightwatch/reports
 RUN adduser -u 10000 nightwatch
+
+RUN chmod -R 777 /home/nightwatch
+
 USER nightwatch
 WORKDIR /home/nightwatch
 
